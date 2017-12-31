@@ -11,7 +11,7 @@ sudo apt-get install build-essential git golang-go libxml2
 
 ## Build from sources
 ```
-$ git clone ...
+$ git clone https://github.com/lexndru/skyle.git
 $ cd skyle
 $ make deps
 $ make
