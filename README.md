@@ -73,13 +73,13 @@ Save it, then `chmod +x yourfile && ./yourfile`
 | timeit  | [true]/false    | Prints runtime in seconds after execution |
 | verbose | [true]/false    | Prints verbose output while running profile |
 | mode    | write/[append]  | Append mode adds records on the same output; Write mode creates new file each time |
-| mime    | <mimetype>      | Force profile to handle probe as <mimetype> (default text/html) |
-| format  | <mimetype>      | Force profile to write output as <mimetype> (default text/csv) |
+| mime    | mimetype        | Force profile to handle probe as <mimetype> (default text/html) |
+| format  | mimetype        | Force profile to write output as <mimetype> (default text/csv) |
 | exec    | [sync]/async    | Set shell exec mode: sync or async (unsupported) |
-| proxy   | <proxy>         | Use given HTTP proxy |
-| sync    | <integer>       | Ensure all instructions return at least <integer> values |
-| maxiter | <integer>       | Change the maximum iteration limit |
-| timeout | <seconds>       | Change HTTP request timeout (seconds) |
+| proxy   | proxy           | Use given HTTP proxy |
+| sync    | integer         | Ensure all instructions return at least <integer> values |
+| maxiter | integer         | Change the maximum iteration limit |
+| timeout | seconds         | Change HTTP request timeout (seconds) |
 | cache   | [true]/false    | Enable or disable cache |
 
 #### agent
