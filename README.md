@@ -4,12 +4,33 @@ Notice: the current version v0.0.9alpha is in an early stage. Bugs and errors mi
 ## Introduction
 Skyle is an ambitious open-source scraper with its own declarative language. It's purpose is to create a portable and elegant way to scrape various file formats. Get a grasp about the basics from this tutorial http://skyle.codeissues.net
 
-## System requirements (Debian/Ubuntu)
+## Download latest build
+```
+$ wget https://github.com/lexndru/skyle/releases/download/v0.0.9-alpha/skyle-0.0.9-alpha-linux-x86_64.tar.gz
+$ tar -vzxf skyle-0.0.9-alpha-linux-x86_64.tar.gz
+$ sudo skyle /usr/bin/skyle
+$ skyle
+     _          _
+ ___| | ___   _| | ___
+/ __| |/ / | | | |/ _ \
+\__ \   <| |_| | |  __/
+|___/_|\_\\__, |_|\___|
+     |___/
+
+Version: 0.0.9alpha
+Build: 3d0efec0e46e65...
+OS/Arch: Linux/x86_64
+```
+
+## Build from sources
+
+#### System requirements (Debian/Ubuntu)
 ```
 sudo apt-get install build-essential git golang-go libxml2
 ```
 
-## Build from sources
+#### Get sources and `make`
+
 ```
 $ git clone https://github.com/lexndru/skyle.git
 $ cd skyle
