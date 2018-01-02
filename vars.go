@@ -135,6 +135,7 @@ var (
     DEBUG     = false
     CHARS     = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     SUPPORT   = []string{TEXT_MIME, HTML_MIME, XML_MIME, JSON_MIME, OCTECT_STREAM_MIME}
+    SKYLE_APP = "skyle"
 
     UNPARSABLE_ERROR        error = errors.New("Unparsable error found")
     ERR_LOOP_NOT_EMPTY      error = errors.New("Unprocessed nodes await")

@@ -35,13 +35,18 @@ Create a file with the following content
 ```
 #!/usr/bin/skyle
 
+# getting started in less than 5 minutes
 title tutorial
-probe http://skyle.codeissues.net
-output results.csv
+probe http://skyle.codeissues.net/
+output keywords.csv
 
-follow //div[@id="main"]/p
-keep .*[^not] allowed.*
-save results
+# extract all Skyle keywords
+follow //table//kbd/text()
+save keyword
+
+# add keyword usage example
+follow //table//kbd/@data-usage
+save usage
 ```
 
 Save it, then `chmod +x yourfile && ./yourfile`
