@@ -11,5 +11,4 @@ install:
   - make deps
 
 script:
-  - make clean
-  - make build
+  - make
