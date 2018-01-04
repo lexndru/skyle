@@ -3,10 +3,9 @@ language: go
 
 go:
   - 1.9
-  - master
 
 install:
   - make deps
 
 script:
-  - make
+  - sudo make
