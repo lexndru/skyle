@@ -35,8 +35,7 @@ sudo apt-get install build-essential git golang-go libxml2
 $ git clone https://github.com/lexndru/skyle.git
 $ cd skyle
 $ make deps
-$ make
-$ sudo make install
+$ sudo make
 $ skyle
      _          _
  ___| | ___   _| | ___

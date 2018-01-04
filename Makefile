@@ -10,7 +10,7 @@ FLAGS=-ldflags "-X main.SKYLE_VERSION=$(VERSION) -X main.SKYLE_BUILD=$(BUILD) -X
 
 .PHONY: build all clean deps install test
 
-all: clean build test
+all: clean build install test
 
 build:
 	$(GOBUILD) $(FLAGS) -o $(BIN_NAME) -v -x
