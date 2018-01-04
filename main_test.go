@@ -14,64 +14,74 @@
 package main
 
 import (
-    "io/ioutil"
-    "os/exec"
     "os"
+    "io/ioutil"
     "bytes"
+    "errors"
     "testing"
 )
 
-func TestInterview(t *testing.T) {
-    profile := "/tmp/skyle_test_interview.sky"
-    profile_ctx := []byte(`
-probe /tmp/skyle_test_interview.txt
-flags mode=write
-output /tmp/skyle_test_interview.csv
-pattern Q:\s+(.*)\n
-save question
-flush all
-pattern A:\s+(.*)\n
-save answer
-`)
-    probe := "/tmp/skyle_test_interview.txt"
-    probe_ctx := []byte(`
-Q: What's your name?
-A: Skyle.
-Q: How are you?
-A: I'm fine, thanks.
-Q: What do you think of this interview?
-A: It's nice!
-`)
-    output := "/tmp/skyle_test_interview.csv"
-    output_ctx := []byte(`question,answer
-What's your name?,Skyle.
-How are you?,"I'm fine, thanks."
-What do you think of this interview?,It's nice!
-`)
-    if err := ioutil.WriteFile(profile, profile_ctx, 0644); err != nil {
-        t.Error(err)
+type Dummy struct {
+    profile, probe, output              string
+    profile_ctx, probe_ctx, output_ctx  []byte
+}
+
+func (d *Dummy) genericTest() error {
+    if err := d.writeInput(d.profile, d.profile_ctx); err != nil {
+        return err
     }
-    if err := ioutil.WriteFile(probe, probe_ctx, 0644); err != nil {
-        t.Error(err)
+    if err := d.writeInput(d.probe, d.probe_ctx); err != nil {
+        return err
     }
-    _, err := exec.Command(SKYLE_APP, profile).Output()
+    if err := d.launchSkyle(); err != nil {
+        return err
+    }
+    if err := d.checkOutput(); err != nil {
+        return err
+    }
+    if err := d.cleanTmpFiles(d.profile, d.probe, d.output); err != nil {
+        return err
+    }
+    return nil
+}
+
+func (d *Dummy) launchSkyle() error {
+    args := &Args{
+        profile: String{true, d.profile},
+        probe:   String{true, d.probe},
+        output:  String{true, d.output},
+    }
+    skyle := NewSkyle(args)
+    skyle.init().parse()
+    skyle.run()
+    skyle.save()
+    return nil
+}
+
+func (d *Dummy) writeInput(filename string, ctx []byte) error {
+    return ioutil.WriteFile(filename, ctx, 0644)
+}
+
+func (d *Dummy) checkOutput() error {
+    data, err := ioutil.ReadFile(d.output)
     if err != nil {
-        t.Error(err)
+        return err
     }
-    data, err := ioutil.ReadFile(output)
-    if err != nil {
-        t.Error(err)
+    if bytes.Equal(d.output_ctx, data) {
+        return nil
     }
-    if !bytes.Equal(data, output_ctx) {
-        t.Fail()
+    return errors.New("Different output context")
+}
+
+func (d *Dummy) cleanTmpFiles(files ...string) error {
+    for _, fp := range files {
+        if err := os.Remove(fp); err != nil {
+            return err
+        }
     }
-    if err := os.Remove(profile); err != nil {
-        t.Error(err)
-    }
-    if err := os.Remove(probe); err != nil {
-        t.Error(err)
-    }
-    if err := os.Remove(output); err != nil {
-        t.Error(err)
-    }
+    return nil
+}
+
+func TestMain(t *testing.T) {
+    // noop
 }

@@ -4,6 +4,9 @@ language: go
 go:
   - 1.9
 
+git:
+  depth: 3
+
 install:
   - make deps
 
