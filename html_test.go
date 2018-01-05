@@ -15,7 +15,6 @@ package main
 
 import (
     "testing"
-    "fmt"
 )
 
 func TestHTMLDocument(t *testing.T) {
@@ -80,7 +79,6 @@ Last article,321,,
         output_ctx:  otctx,
     }
     if err := d.genericTest(); err != nil {
-        fmt.Println(err)
         t.Fail()
     }
 }
