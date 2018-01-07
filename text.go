@@ -51,7 +51,7 @@ func (td *TextDocument) RunRemove(s *Skyle, args []string) error {
     if len(values) > 0 {
         vars := s.Profile().Program().Template(args)
         param := strings.Join(vars, EMPTY_SPACE)
-        s.Profile().Program().LogMessage("Removing string %s", param)
+        s.Profile().Program().LogMessage("Removing string:", param)
         for i, tmp := range values {
             lastRemove[i] = RemoveString(param, tmp)
         }
@@ -65,7 +65,7 @@ func (td *TextDocument) RunPattern(s *Skyle, args []string) error {
     lastPattern := []string{}
     if len(values) > 0 {
         param := strings.Join(args, EMPTY_SPACE)
-        s.Profile().Program().LogMessage("Extracting pattern %s", param)
+        s.Profile().Program().LogMessage("Extracting pattern:", param)
         for _, tmp := range values {
             vals := ExtractPattern(param, tmp)
             lastPattern = append(lastPattern, vals...)
@@ -81,7 +81,7 @@ func (td *TextDocument) RunGlue(s *Skyle, args []string) error {
     if len(values) > 0 {
         vars := s.Profile().Program().Template(args)
         param := strings.Join(vars, EMPTY_SPACE)
-        s.Profile().Program().LogMessage("Applying glue %s", param)
+        s.Profile().Program().LogMessage("Applying glue:", param)
         for i, tmp := range values {
             lastGlue[i] = Template(param, tmp)
         }
@@ -136,7 +136,7 @@ func (td *TextDocument) RunSave(s *Skyle, args []string) error {
 func (td *TextDocument) RunExec(s *Skyle, args []string) error {
     vars := s.Profile().Program().Template(args)
     cmd := strings.Join(vars, EMPTY_SPACE)
-    s.Profile().Program().LogMessage("Running command: %s", cmd)
+    s.Profile().Program().LogMessage("Running command:", cmd)
     lastExec := []string{BLANK_LINE}
     stdout, err := exec.Command("bash", "-c", cmd).Output()
     if err != nil {
@@ -173,7 +173,7 @@ func (td *TextDocument) RunReplace(s *Skyle, args []string) error {
     values := s.Profile().Program().TmpValues()
     lastReplace := make([]string, len(values))
     if len(values) > 0 {
-        s.Profile().Program().LogMessage("Replacing %s", old)
+        s.Profile().Program().LogMessage("Replacing:", old)
         for i, tmp := range values {
             lastReplace[i] = ReplaceString(old, tmp, new_)
         }
@@ -184,7 +184,7 @@ func (td *TextDocument) RunReplace(s *Skyle, args []string) error {
 
 func (td *TextDocument) RunDump(s *Skyle, args []string) error {
     msg := strings.Join(args, EMPTY_SPACE)
-    s.Profile().Program().LogMessage("Memory dump: %s", msg)
+    s.Profile().Program().LogMessage("Memory dump:", msg)
     Dump(s.Profile().Program().TmpValues())
     return nil
 }

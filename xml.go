@@ -59,7 +59,7 @@ func (xd *XmlDocument) setGlobalNodeList(path string) {
 
 func (xd *XmlDocument) RunFollow(s *Skyle, args []string) error {
     path := strings.Join(args, EMPTY_SPACE)
-    s.Profile().Program().LogMessage("Following path %s", path)
+    s.Profile().Program().LogMessage("Following path:", path)
     xd.setGlobalNodeList(path)
     lastFollow := []string{}
     for _, xd.LastNode = range xd.NodeList {
@@ -69,7 +69,7 @@ func (xd *XmlDocument) RunFollow(s *Skyle, args []string) error {
         }
         lastFollow = append(lastFollow, content)
     }
-    s.Profile().Program().LogMessage(fmt.Sprintf("Found %d item(s)", len(xd.LastFollow)))
+    s.Profile().Program().LogMessage(fmt.Sprintf("Found %d item(s)", len(lastFollow)))
     s.Profile().Program().Store(&xd.LastFollow, lastFollow)
     return nil
 }

@@ -3,7 +3,7 @@ GOCLEAN=go clean
 GOGET=go get
 GOTEST=go test
 BIN_NAME=skyle
-VERSION=0.0.9alpha
+VERSION=0.0.10alpha
 BUILD=`git log -1 --format="%H"`
 OSARCH=`uname`/`uname -i`
 FLAGS=-ldflags "-X main.SKYLE_VERSION=$(VERSION) -X main.SKYLE_BUILD=$(BUILD) -X main.SKYLE_OSARCH=$(OSARCH)"
@@ -22,7 +22,7 @@ clean:
 deps:
 	$(GOGET) -v -x
 
-install:
+install: build
 	mv $(BIN_NAME) /usr/bin/$(BIN_NAME)
 
 test:

@@ -62,7 +62,7 @@ func (hd *HtmlDocument) setGlobalNodeList(path string) {
 
 func (hd *HtmlDocument) RunFollow(s *Skyle, args []string) error {
     path := strings.Join(args, EMPTY_SPACE)
-    s.Profile().Program().LogMessage("Following path %s", path)
+    s.Profile().Program().LogMessage("Following path:", path)
     hd.setGlobalNodeList(path)
     lastFollow := []string{}
     for _, hd.LastNode = range hd.NodeList {
@@ -72,7 +72,7 @@ func (hd *HtmlDocument) RunFollow(s *Skyle, args []string) error {
         }
         lastFollow = append(lastFollow, content)
     }
-    s.Profile().Program().LogMessage(fmt.Sprintf("Found %d item(s)", len(hd.LastFollow)))
+    s.Profile().Program().LogMessage(fmt.Sprintf("Found %d item(s)", len(lastFollow)))
     s.Profile().Program().Store(&hd.LastFollow, lastFollow)
     return nil
 }
