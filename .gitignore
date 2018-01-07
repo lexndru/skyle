@@ -1,3 +1,4 @@
 /build
 /tmp
 .notes
+deploy.sh

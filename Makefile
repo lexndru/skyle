@@ -3,12 +3,14 @@ GOCLEAN=go clean
 GOGET=go get
 GOTEST=go test
 BIN_NAME=skyle
-VERSION=0.0.10alpha
+VERSION=0.0.10-alpha
 BUILD=`git log -1 --format="%H"`
-OSARCH=`uname`/`uname -i`
-FLAGS=-ldflags "-X main.SKYLE_VERSION=$(VERSION) -X main.SKYLE_BUILD=$(BUILD) -X main.SKYLE_OSARCH=$(OSARCH)"
+OS=`uname`
+ARCH=`uname -i`
+FLAGS=-ldflags "-X main.SKYLE_VERSION=$(VERSION) -X main.SKYLE_BUILD=$(BUILD) -X main.SKYLE_OSARCH=$(OS)/$(ARCH)"
+RELEASE=$(shell echo $(BIN_NAME)-$(VERSION)-$(OS)_$(ARCH).tar.gz | tr A-Z a-z)
 
-.PHONY: build all clean deps install test
+.PHONY: build all clean deps install test release
 
 all: clean build test
 
@@ -17,7 +19,8 @@ build:
 
 clean:
 	$(GOCLEAN) -x -v
-	rm -f $(BIN_NAME)
+	rm -f $(BIN_NAME) 2> /dev/null
+	rm -f $(RELEASE) 2> /dev/null
 
 deps:
 	$(GOGET) -v -x
@@ -27,3 +30,7 @@ install:
 
 test:
 	$(GOTEST) -v -x -cover
+
+release:
+	rm -f $(RELEASE) 2> /dev/null
+	tar -vzcf $(RELEASE) $(BIN_NAME)
