@@ -8,8 +8,8 @@ Skyle is an ambitious open-source scraper with its own declarative language. It'
 
 ## Download latest build
 ```
-$ wget https://github.com/lexndru/skyle/releases/download/v0.0.9-alpha/skyle-0.0.9-alpha-linux-x86_64.tar.gz
-$ tar -vzxf skyle-0.0.9-alpha-linux-x86_64.tar.gz
+$ wget https://github.com/lexndru/skyle/releases/download/v0.0.10-alpha/skyle-0.0.10-alpha-linux-x86_64.tar.gz
+$ tar -vzxf skyle-0.0.10-alpha-linux-x86_64.tar.gz
 $ sudo mv skyle /usr/bin/skyle
 $ skyle
      _          _
@@ -19,7 +19,7 @@ $ skyle
 |___/_|\_\\__, |_|\___|
      |___/
 
-Version: 0.0.9alpha
+Version: 0.0.10alpha
 Build: 3d0efec0e46e65...
 OS/Arch: Linux/x86_64
 ```
@@ -47,7 +47,7 @@ $ skyle
 |___/_|\_\\__, |_|\___|
      |___/
 
-Version: 0.0.9alpha
+Version: 0.0.10alpha
 Build: 3d0efec0e46e65...
 OS/Arch: Linux/x86_64
 ...
