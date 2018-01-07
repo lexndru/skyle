@@ -22,7 +22,7 @@ clean:
 deps:
 	$(GOGET) -v -x
 
-install: build
+install:
 	mv $(BIN_NAME) /usr/bin/$(BIN_NAME)
 
 test:
