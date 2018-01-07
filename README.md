@@ -1,7 +1,7 @@
 # Skyle
 [![Build Status](https://travis-ci.org/lexndru/skyle.svg?branch=master)](https://travis-ci.org/lexndru/skyle)
 
-Notice: the current version v0.0.9alpha is in an early stage. Bugs and errors might occur.
+Notice: the current version v0.0.10alpha is in an early stage. Bugs and errors might occur.
 
 ## Introduction
 Skyle is an ambitious open-source scraper with its own declarative language. It's purpose is to create a portable and elegant way to scrape various file formats. Get a grasp about the basics from this tutorial http://skyle.codeissues.net
