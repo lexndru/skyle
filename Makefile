@@ -1,12 +1,13 @@
+CWD=$(shell pwd)
 GOBUILD=go build
 GOCLEAN=go clean
 GOGET=go get
 GOTEST=go test
 BIN_NAME=skyle
 VERSION=0.0.10-alpha
-BUILD=`git log -1 --format="%H"`
-OS=`uname`
-ARCH=`uname -i`
+BUILD=$(shell git log -1 --format="%H")
+OS=$(shell uname)
+ARCH=$(shell uname -i)
 FLAGS=-ldflags "-X main.SKYLE_VERSION=$(VERSION) -X main.SKYLE_BUILD=$(BUILD) -X main.SKYLE_OSARCH=$(OS)/$(ARCH)"
 RELEASE=$(shell echo $(BIN_NAME)-$(VERSION)-$(OS)_$(ARCH).tar.gz | tr A-Z a-z)
 
