@@ -29,7 +29,7 @@ deps:
 	$(GOGET) -v -x
 
 install:
-	mv build/$(BIN_NAME) /usr/bin/$(BIN_NAME)
+	cp build/$(BIN_NAME) /usr/bin/$(BIN_NAME)
 
 test:
 	$(GOTEST) -v -x -cover
