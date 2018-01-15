@@ -1,4 +1,5 @@
 CWD=$(shell pwd)
+BUILDDIR=build
 GOBUILD=go build
 GOCLEAN=go clean
 GOGET=go get
@@ -16,22 +17,23 @@ RELEASE=$(shell echo $(BIN_NAME)-$(VERSION)-$(OS)_$(ARCH).tar.gz | tr A-Z a-z)
 all: clean build test
 
 build:
-	$(GOBUILD) $(FLAGS) -o $(BIN_NAME) -v -x
+	mkdir -p $(BUILDDIR)
+	$(GOBUILD) $(FLAGS) -o $(BUILDDIR)/$(BIN_NAME) -v -x
 
 clean:
 	$(GOCLEAN) -x -v
-	rm -f $(BIN_NAME) 2> /dev/null
+	rm -rf $(BUILDDIR)/$(BIN_NAME) 2> /dev/null
 	rm -f $(RELEASE) 2> /dev/null
 
 deps:
 	$(GOGET) -v -x
 
 install:
-	mv $(BIN_NAME) /usr/bin/$(BIN_NAME)
+	mv build/$(BIN_NAME) /usr/bin/$(BIN_NAME)
 
 test:
 	$(GOTEST) -v -x -cover
 
 release:
 	rm -f $(RELEASE) 2> /dev/null
-	tar -vzcf $(RELEASE) $(BIN_NAME)
+	tar -vzcf $(RELEASE) $(BUILDDIR)/$(BIN_NAME)
